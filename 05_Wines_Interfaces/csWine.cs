@@ -14,7 +14,8 @@ namespace _05_Wines_Interfaces
         public decimal Price { get; set; }
 
         public override string ToString()
-            => $"Wine {Name} from {Country} is {WineType} and made from grapes {GrapeType}. The price is {Price:N2} Sek";
+            => $"Wine {Name} from {Country} is {WineType} and made from grapes {GrapeType}."
+            + $" The price is {Price:N2} Sek. ({this.GetType().Name})";
 
 
         public IWine Seed (csSeedGenerator rnd)
@@ -26,6 +27,19 @@ namespace _05_Wines_Interfaces
             Country = rnd.FromEnum<enCountry>();
             Price = rnd.Next(50, 150);
             return this;
+        }
+
+        public csWine(IWine original)
+        {
+            this.Name = original.Name;
+            this.GrapeType = original.GrapeType;
+            this.Country = original.Country;
+            this.WineType = original.WineType;
+            this.Price = original.Price;
+        }
+        public csWine()
+        {
+
         }
 	}
 
@@ -40,8 +54,8 @@ namespace _05_Wines_Interfaces
         public decimal Price { get; set; }
 
         public override string ToString()
-            => $"Wine {Name} from {Country} is {WineType} and made from grapes {GrapeType}. The price is {Price:N2} Sek";
-
+            => $"Wine {Name} from {Country} is {WineType} and made from grapes {GrapeType}."
+            + $" The price is {Price:N2} Sek. ({this.GetType().Name})";
 
         public IWine Seed(csSeedGenerator rnd)
         {

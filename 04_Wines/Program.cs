@@ -7,7 +7,7 @@ public enum enGrapeType {Reissling, Tempranillo, Chardonay, Shiraz, CabernetSavi
 public enum enWineType { Red, White, Rose}
 public enum enCountry { Germany, France, Spain }
 
-public struct csWine
+public struct csWine : IComparable<csWine>
 {
     public string Name { get; }
 
@@ -23,6 +23,15 @@ public struct csWine
         return s;
     }
 
+    public int CompareTo(csWine other)
+    {
+        if (this.Country != other.Country)
+        {
+            return this.Country.CompareTo(other.Country);
+        }
+        return this.Price.CompareTo(other.Price);
+    }
+
     public csWine() { }
     public csWine(csSeedGenerator _seeder)
     {
@@ -32,7 +41,7 @@ public struct csWine
         GrapeType = _seeder.FromEnum<enGrapeType>();
         WineType = _seeder.FromEnum<enWineType>();
         Country = _seeder.FromEnum<enCountry>();
-        Price = _seeder.Next(50, 150);
+        Price = _seeder.NextDecimal(50, 150);
     }
     public csWine(string _name, enCountry _country, enGrapeType _grapetype,
         enWineType _wineType, decimal _price)
@@ -100,7 +109,14 @@ class Program
         Console.WriteLine($"My most cheapest wine cost {minPrice}");
         Console.WriteLine($"Total wine cellar value is {totValue}");
 
+        Console.WriteLine("\n\nSorted cellar");
+        wines.Sort();
+        foreach (var item in wines)
+        {
+            Console.WriteLine(item);
+        }
 
+        /*
         Console.WriteLine("\nA copy of my winecellar");
         List<csWine> wines_copy = new List<csWine>();
         for (int i = 0; i < wines.Count; i++)
@@ -111,7 +127,7 @@ class Program
         {
             Console.WriteLine(item);
         }
-
+        */
 
 
     }

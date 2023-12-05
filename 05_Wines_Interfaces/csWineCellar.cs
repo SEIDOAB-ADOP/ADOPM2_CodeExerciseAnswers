@@ -4,13 +4,31 @@ namespace _05_Wines_Interfaces
     public class WineCellar
     {
         public string Name { get; set; }
-        private List<IWine> Wines = new List<IWine>();
+        private List<IWine> Wines { get; } = new List<IWine>();
+
+
+        public IWine this[int idx] => new csWine(Wines[idx]);
 
 
         public void Add(IWine wine) => Wines.Add(wine);
         public int Count => Wines.Count;
-        public IWine this[int idx] => Wines[idx];
- 
+
+        public List<IWine> ShallowCopyofWines => Wines;
+        public List<IWine> DeepCopyofWines => Wines.Select(w => new csWine(w)).ToList<IWine>();
+
+        public List<IWine> DeepCopyofWines2
+        {
+            get
+            {
+                List<IWine> _copy = new List<IWine>();
+                foreach (var item in Wines)
+                {
+                    _copy.Add(new csWine(item));
+                }
+                return _copy;
+            }
+        }
+
         public decimal Value
         {
             get
@@ -29,7 +47,7 @@ namespace _05_Wines_Interfaces
             var sRet = "";
             foreach (var wine in Wines)
             {
-                sRet += $"{wine}\n   - {wine.GetType().Name}\n";
+                sRet += $"{wine}\n";
             }
             return sRet;
         }
