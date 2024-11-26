@@ -59,96 +59,121 @@ public class Program
 
     static void Main(string[] args)
     {
-        var rnd = new SeedGenerator();
         Console.WriteLine("Class exploration with Cars!");
+        var rnd = new SeedGenerator();
 
-        Console.WriteLine("\nDefault constructor");
-        Car car0 = new Car();
-        Console.WriteLine(car0);
-
-        Console.WriteLine("Copy constructor");
-        Car car0_copy = new Car(car0);
-        Console.WriteLine(car0_copy);
-
-        Console.WriteLine("\nRandom constructor"); Car car1 = new Car(rnd);
+        var car1 = new Car(rnd) { Brand = CarBrand.Ford };
         Console.WriteLine(car1);
 
-        Console.WriteLine("Copy constructor");
-        Car car1_copy = new Car(car1);
-        Console.WriteLine(car1_copy);
+        var car2 = new Car(rnd) { Brand = CarBrand.Ford };
+        Console.WriteLine(car2);
 
-        Console.WriteLine("\nConstructor to set properties");
-        Car car1a = new Car(CarColor.Red, CarBrand.Jaguar, CarModel.XF);
-        Console.WriteLine(car1a);
+        var car2Copy = new Car(car2) { Color = CarColor.Burgundy };
 
-        Console.WriteLine("Copy constructor");
-        Car car1a_copy = new Car(car1a);
-        Console.WriteLine(car1a_copy);
-
-
-        //Create 10 cars
-        Console.WriteLine("\nLista 10 bilar");
-        Car[] cars = new Car[10];
+        var cars = new List<Car>();
         for (int i = 0; i < 10; i++)
         {
-            cars[i] = new Car(rnd) { Color = CarColor.Burgundy };
+            cars.Add(new Car(rnd) { Brand = CarBrand.Ford });
         }
 
-        foreach (var item in cars)
+        Console.WriteLine();
+        Console.WriteLine("List of cars");
+        foreach (var car in cars)
         {
-            Console.WriteLine(item);
+            Console.WriteLine(car);
         }
 
-        //Copy 10 cars
-        Console.WriteLine("\nKopia av listan 10 bilar");
-        Car[] cars_copy = new Car[10];
-        for (int i = 0; i < cars_copy.Length; i++)
+        Console.WriteLine();
+        Console.WriteLine("List of carsrefcopy");
+        var carsrefcopy = cars;
+        foreach (var car in carsrefcopy)
         {
-            cars_copy[i] = new Car(cars[i]);
+            Console.WriteLine(car);
         }
 
-        foreach (var item in cars_copy)
+        Console.WriteLine();
+        Console.WriteLine("element nr 9");
+        carsrefcopy[9] = null;
+        Console.WriteLine(carsrefcopy[9]);
+        Console.WriteLine(cars[9]);
+
+
+        Console.WriteLine();
+        Console.WriteLine("List of carsshallowcopy");
+        var carsshallowcopy = new List<Car>();
+        foreach (var car in cars)
         {
-            Console.WriteLine(item);
+            carsshallowcopy.Add(car);
         }
 
+        Console.WriteLine();
+        Console.WriteLine("element nr 7");
+        carsshallowcopy[7] = null;
+        Console.WriteLine(carsshallowcopy[7]);
+        Console.WriteLine(cars[7]);
+
+        Console.WriteLine();
+        Console.WriteLine("element nr 5");
+        carsshallowcopy[5].Color = CarColor.Red;
+        Console.WriteLine(carsshallowcopy[5].Color);
+        Console.WriteLine(cars[5].Color);
+
+        Console.WriteLine();
+        Console.WriteLine("List of carsdeepcopy");
+        var carsdeepcopy = new List<Car>();
+        foreach (var car in cars)
+        {
+            if (car != null)
+            {
+                carsdeepcopy.Add(new Car(car));
+            }
+        }
+        for (int i = 0; i < carsdeepcopy.Count; i++)
+        {
+            if (carsdeepcopy[i] != null)
+            {
+                carsdeepcopy[i].Color = CarColor.Red;
+            }
+        }
+        foreach (var car in cars)
+        {
+            Console.WriteLine(car);
+        }
+        foreach (var car in carsdeepcopy)
+        {
+            Console.WriteLine(car);
+        }
     }
 
     //Exercises:
-    //1. Make class csCar public field Color a public property with getters and setters
+    //1. Make class Car public field Color a public property with getters and setters
 
-    //2. Create two new public properties in class csCar, Brand, Model
+    //2. Create two new public properties in class Car, Brand, Model
     //   (of types enCarBrand and enCarModel)
 
-    //3. Create an empty class constructor to csCar that sets Color, Brand and Model to
-    //   Random values
+    // 3. Gör en construtor Car(csSeedGenerator _seeder) som sätter alla properties till
+    //    random
 
-    //4. Create a method public method WhoAmI() that presents for example
+    //4. Make a ToString() override that presents for example
     //   "I am a Red Ford Mustang_GT";
 
-    //5. In Main(), create two variables, car1, car2 and instantiate from csCar
-    //   - printout WhoAmI of car1 and car2
+    //5. In Main(), create two variables, car1, car2 and instantiate from Car
+    //   - presentera car1 and car2
 
-    //Advanced:
     //6. Modify the properties Color, Brand and Model so that only Color can change
     //   once an instance of Car has been created
 
     //7. Modify the properties of Brand and Model so they can also be set during
     //   Object initialization, i.e.  new Car(){ Model = ..., Brand = ...}
 
-    //8. Create an array of 10 cars, all of Color Burgundy.
+    //8. Create an array of 10 cars, all of Color Burgundy, all othet properties random
 
     //9. Change class Car to struct Car and run the program again.
 
+    // 10. Deklarera en construktor som tillåter dig att själv bestämma alla Car public properties
 
-    // --- Gör tills 4 Oktober
-    // 10. Gör om construtor csCar() så att den tar en parameter (csSeedGenerator _seeder).
-    //    Instantiera csSeedGeneratorn i Main() och modifiera koden så att den fungerar som innan.
-    //
-    // 11. Deklarera en construktor som tillåter dig att själv bestämma alla csCar public properties
-    //
-    // 12. Deklarera en Copy constructor.
-    //
-    // 13. Använd copy constructorn för att skapa en array av 10 bilar som är en kopia av ursprunget
+    // 11. Deklarera en Copy constructor.
+
+    // 12. Använd copy constructorn för att skapa en array av 10 bilar som är en kopia av ursprunget
 }
 
