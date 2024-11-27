@@ -7,8 +7,8 @@ namespace _05_Wines_Interfaces
     public enum WineType { Red, White, Rose }
     public enum Country { Germany, France, Spain }
 
-    public class Wine
-	{
+    public class Wine : IEquatable<Wine>
+    {
         public string Name { get; set; }
 
         public Country Country { get; set; }
@@ -21,7 +21,18 @@ namespace _05_Wines_Interfaces
             => $"Wine {Name} from {Country} is {WineType} and made from grapes {GrapeType}. The price is {Price:N2} Sek";
 
 
-        public Wine Seed (SeedGenerator rnd)
+        public bool Equals(Wine other) => (Name, Country, WineType, GrapeType) == (other.Name, other.Country, other.WineType, other.GrapeType);
+
+        public override bool Equals(object obj) => Equals(obj as Wine);
+
+        public override int GetHashCode() => (Name, Country, WineType, GrapeType).GetHashCode();
+
+        public static bool operator ==(Wine left, Wine right) => left.Equals(right);
+        public static bool operator !=(Wine left, Wine right) => left.Equals(right);
+
+
+
+        public Wine Seed(SeedGenerator rnd)
         {
             Name = rnd.FromString("Chattaux de bueff, Chattaux de paraply, PutiPuti, NamNam");
 
@@ -31,6 +42,22 @@ namespace _05_Wines_Interfaces
             Price = rnd.Next(50, 150);
             return this;
         }
-	}
+        public Wine()
+        {
+
+        }
+        public Wine(Wine org)
+        {
+            Name = org.Name;
+            GrapeType = org.GrapeType;
+
+            WineType = org.WineType;
+            Country = org.Country;
+            Price = org.Price;
+
+
+        }
+
+    }
 }
 

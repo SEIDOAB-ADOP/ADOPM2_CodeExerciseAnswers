@@ -1,4 +1,5 @@
-﻿using Seido.Utilities.SeedGenerator;
+﻿using _05_Wines_Interfaces;
+using Seido.Utilities.SeedGenerator;
 
 namespace _07_IEquatable_IComparable;
 
@@ -31,6 +32,30 @@ class Program
         Console.WriteLine(n2);
 
         Console.WriteLine(n1.Equals(n2));
+
+
+
+        //Wines
+        var w1 = new Wine().Seed(rnd);
+        var w2 = new Wine().Seed(rnd);
+
+        Console.WriteLine(w1 == w2);
+        Console.WriteLine(w1.Equals(w2));
+        Console.WriteLine(w1.GetHashCode());
+        Console.WriteLine(w2.GetHashCode());
+
+        var w3 = new Wine(w1);
+        Console.WriteLine(w1 == w3);
+        Console.WriteLine(w1.Equals(w3));
+        Console.WriteLine(w1.GetHashCode());
+        Console.WriteLine(w3.GetHashCode());
+
+        var wineCellar = new WineCellar();
+        wineCellar.Wines.Add(w1);
+        wineCellar.Wines.Add(w2);
+        wineCellar.Wines.Add(w3);
+
+        Console.WriteLine(wineCellar);
     }
 }
 
