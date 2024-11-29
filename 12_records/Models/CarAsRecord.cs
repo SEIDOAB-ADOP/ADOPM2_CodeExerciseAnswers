@@ -11,7 +11,7 @@ public record CarAsRecord (
     CarBrand Brand, CarModel Model, string RegNumber,
     int Year, IPerson Owner) : ICar
 {
-    public CarAsRecord():this(CarBrand.Boxcar, CarModel.Boxmodel, null, 0, null)
+    public CarAsRecord():this(default, default, default, default, default)
     {}
     public ICar Seed(SeedGenerator seeder)
     { 

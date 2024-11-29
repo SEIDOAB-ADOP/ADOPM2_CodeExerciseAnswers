@@ -9,7 +9,7 @@ namespace _12_interfaces.Models;
 
 public record PersonAsRecord (string FirstName, string LastName, string Email) : IPerson
 {
-    public PersonAsRecord():this(null, null, null)
+    public PersonAsRecord():this(default, default, default)
     {}
     public IPerson Seed(SeedGenerator seeder)
     { 
