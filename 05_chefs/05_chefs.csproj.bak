@@ -5,7 +5,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>_05_chefs</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
