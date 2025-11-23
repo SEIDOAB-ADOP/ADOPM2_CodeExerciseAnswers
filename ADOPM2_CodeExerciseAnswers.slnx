@@ -1,0 +1,15 @@
+<Solution>
+  <Project Path="01_Cars\01_Cars.csproj" />
+  <Project Path="02_Friends\02_Friends.csproj" />
+  <Project Path="03_Pearls\03_Pearls.csproj" />
+  <Project Path="04_Wines\04_Wines.csproj" />
+  <Project Path="05_chefs\05_chefs.csproj" />
+  <Project Path="05_Wines_Interfaces\06_Wines_Interfaces.csproj" />
+  <Project Path="07_IEquatable_IComparable\07_IEquatable_IComparable.csproj" />
+  <Project Path="08_hashset_factory_switchexpr\08_hashset_factory_switchexpr.csproj" />
+  <Project Path="11_interfaces\11_interfaces.csproj" />
+  <Project Path="12_records\12_records.csproj" />
+  <Project Path="13_pattern_matching\13_pattern_matching.csproj" />
+  <Project Path="14_tuples\14_tuples.csproj" />
+  <Project Path="SeedGenerator\SeedGenerator.csproj" />
+</Solution>
