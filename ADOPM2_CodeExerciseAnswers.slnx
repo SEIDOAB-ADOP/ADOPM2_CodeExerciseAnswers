@@ -1,6 +1,7 @@
 <Solution>
   <Project Path="01_Cars\01_Cars.csproj" />
   <Project Path="02_Friends\02_Friends.csproj" />
+  <Project Path="03a_Necklace/03a_Necklace.csproj" />
   <Project Path="03_Pearls\03_Pearls.csproj" />
   <Project Path="04_Wines\04_Wines.csproj" />
   <Project Path="05_chefs\05_chefs.csproj" />
