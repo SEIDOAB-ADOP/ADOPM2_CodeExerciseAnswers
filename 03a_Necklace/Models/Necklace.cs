@@ -9,7 +9,11 @@ namespace _03a_Necklace.Models
         public List<Pearl> ListOfPearls { get; set; } = new List<Pearl>();
         public string Name { get; set; }
 
-        public (Pearl minPearl, Pearl maxPearl) GetMinMaxPearl()
+        public (Pearl minPearl, Pearl maxPearl) GetMinMaxPearl() => 
+            (ListOfPearls.MaxBy(p => p.Size), ListOfPearls.MinBy(p => p.Size));
+
+/*
+        GetMinMaxPearl()
         {
             int maxSize = int.MinValue;
             int minSize = int.MaxValue;
@@ -31,12 +35,13 @@ namespace _03a_Necklace.Models
             }
             return (minPearl, maxPearl);
         }
+        */    
         public override string ToString()
         {
             string sRet = $"\n{Name}:";
             foreach (var item in ListOfPearls)
             {
-                sRet += $"\n{item.ToString()}";
+                sRet += $"\n{item}";
             }
             return sRet;
         }
@@ -59,11 +64,15 @@ namespace _03a_Necklace.Models
         public Necklace(Necklace org, string name)
         {
             Name = name;
+            ListOfPearls = org.ListOfPearls.Select(p => new Pearl(p)).ToList();
+
+            /*
             ListOfPearls = new List<Pearl>();
             foreach (var item in org.ListOfPearls)
             {
                 ListOfPearls.Add(new Pearl(item));
             }
+            */
         }
     }
     #endregion
