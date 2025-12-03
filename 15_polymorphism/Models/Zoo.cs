@@ -21,15 +21,17 @@ public class Zoo
     }
     public Zoo(Zoo original)
     {
+        /*
         Name = original.Name;
         ListOfAnimal = original.ListOfAnimal;  // Reference copy: same list reference
-
+        */
+        
         /*
         Name = original.Name;
         ListOfAnimal = new List<Animal>(original.ListOfAnimal);  // Shallow copy: New list, same animals
         */
 
-        /*
+        
         Name = original.Name;
         ListOfAnimal = new List<Animal>();
         
@@ -45,7 +47,7 @@ public class Zoo
             };
             ListOfAnimal.Add(newAnimal);
         }
-        */
+        
         
 
     }
