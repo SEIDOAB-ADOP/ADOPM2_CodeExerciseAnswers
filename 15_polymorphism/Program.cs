@@ -52,5 +52,12 @@ foreach (var a in zoo.ListOfAnimal)
     System.Console.WriteLine($"{a}. Says: {a.MakeSound()}");
 }
 
+foreach (Animal a in zoo.ListOfAnimal)
+{
+    System.Console.WriteLine();
+    System.Console.WriteLine($"{a}");
+    a.Seed(seeder);
+    System.Console.WriteLine($"{a}");
+}
 
 #endregion
