@@ -18,12 +18,12 @@ When creating a copy of an object that contains reference types (like `List<Anim
 ---
 
 
-### Exercise 7: Implement Shallow Copy Constructor (Version 1)
+### Exercise 7: Implement Reference Copy Constructor
 
-**Objective:** Create a copy constructor that performs a shallow copy of the Zoo.
+**Objective:** Create a copy constructor that performs a reference copy of the Zoo.
 
 **Task:**
-1. In the `Zoo` class, add a copy constructor with shallow copy behavior:
+1. In the `Zoo` class, add a copy constructor with reference copy behavior:
 ```csharp
 // Shallow copy constructor - shares the same list reference
 public Zoo(Zoo original)
@@ -35,30 +35,30 @@ public Zoo(Zoo original)
 
 2. In `Program.cs`:
    - Create `originalZoo` with Name = "City Zoo" and 5 animals
-   - Create a shallow copy: `var shallowCopy = new Zoo(originalZoo);`
-   - Change the name of `shallowCopy` to "Shallow Copy Zoo"
-   - Add 2 more animals to `shallowCopy.ListOfAnimal`
+   - Create a reference copy: `var referenceCopy = new Zoo(originalZoo);`
+   - Change the name of `referenceCopy` to "Reference Copy Zoo"
+   - Add 2 more animals to `referenceCopy.ListOfAnimal`
    - Display both zoos with their names and animal counts
 
 **Expected Output:**
 ```
 Original Zoo Name: City Zoo
 Original Zoo Animal Count: 7
-Shallow Copy Zoo Name: Shallow Copy Zoo
-Shallow Copy Zoo Animal Count: 7
+Reference Copy Zoo Name: Shallow Copy Zoo
+Reference Copy Zoo Animal Count: 7
 ```
 
 **Questions:**
-- Why does the `originalZoo` have 7 animals even though you only added animals to `shallowCopy`?
+- Why does the `originalZoo` have 7 animals even though you only added animals to `referenceCopy`?
 - Why do the names differ but the animal counts are the same?
 - What part is "copied" and what part is "shared"?
 
 **Key Learning:**
-Shallow copy creates a new `Zoo` object (so `Name` is independent), but `ListOfAnimal` still references the same list. Adding animals affects both zoos.
+Reference copy creates a new `Zoo` object (so `Name` is independent), but `ListOfAnimal` still references the same list. Adding animals affects both zoos.
 
 ---
 
-### Exercise 8: Implement Shallow Copy with New List (Version 2)
+### Exercise 8: Implement Shallow Copy with New List 
 
 **Objective:** Create a shallow copy that creates a new list, but with the same animal references.
 

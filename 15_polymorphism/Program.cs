@@ -61,3 +61,62 @@ foreach (Animal a in zoo.ListOfAnimal)
 }
 
 #endregion
+
+#region 3-Exercise-copy-constructors
+var originalZoo = new Zoo() { Name = "Original Zoo" };
+originalZoo.ListOfAnimal.AddRange(seeder.ItemsToList<NordicAnimal>(2));
+
+var referenceCopy = new Zoo(originalZoo) { Name = "Reference Copy Zoo"};
+referenceCopy.ListOfAnimal.Add(new AfricanAnimal().Seed(seeder));
+referenceCopy.ListOfAnimal.Add(new HunterBird().Seed(seeder));
+
+System.Console.WriteLine($"\noriginalZoo Count: {originalZoo.ListOfAnimal.Count}");
+foreach (var a in originalZoo.ListOfAnimal)
+{
+    System.Console.WriteLine(a);
+}
+System.Console.WriteLine($"\nreferenceCopy Count: {referenceCopy.ListOfAnimal.Count}");
+foreach (var a in referenceCopy.ListOfAnimal)
+{
+    System.Console.WriteLine(a);
+}
+
+/*
+var shallowCopy = new Zoo(originalZoo) { Name = "Shallow Copy Zoo"};
+shallowCopy.ListOfAnimal.Add(new AfricanAnimal().Seed(seeder));
+shallowCopy.ListOfAnimal.Add(new HunterBird().Seed(seeder));
+
+shallowCopy.ListOfAnimal[0].Name = "Modified Name";
+
+System.Console.WriteLine($"\noriginalZoo Count: {originalZoo.ListOfAnimal.Count}");
+System.Console.WriteLine($"\nshallowCopy Count: {shallowCopy.ListOfAnimal.Count}");
+foreach (var a in originalZoo.ListOfAnimal)
+{
+    System.Console.WriteLine(a);
+}
+foreach (var a in shallowCopy.ListOfAnimal)
+{
+    System.Console.WriteLine(a);
+}
+*/
+
+/*
+var deepCopy = new Zoo(originalZoo) { Name = "Deep Copy Zoo"};
+deepCopy.ListOfAnimal.Add(new AfricanAnimal().Seed(seeder));
+deepCopy.ListOfAnimal.Add(new HunterBird().Seed(seeder));
+
+deepCopy.ListOfAnimal[0].Name = "Modified Name";
+
+System.Console.WriteLine($"\noriginalZoo Count: {originalZoo.ListOfAnimal.Count}");
+System.Console.WriteLine($"\ndeepCopy Count: {deepCopy.ListOfAnimal.Count}");
+foreach (var a in originalZoo.ListOfAnimal)
+{
+    System.Console.WriteLine(a);
+}
+foreach (var a in deepCopy.ListOfAnimal)
+{
+    System.Console.WriteLine(a);
+}
+*/
+
+#endregion
