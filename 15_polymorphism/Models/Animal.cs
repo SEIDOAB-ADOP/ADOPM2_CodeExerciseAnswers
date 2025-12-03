@@ -14,6 +14,7 @@ public class Animal: ISeed<Animal>
 	public string Name { get; set; }
 
 	public override string ToString() => $"{Name} the {Mood} {Age}yr";
+	public virtual string MakeSound() =>"Unknown sound!";
 	
 	public bool Seeded {get; set;} = false;
 	public Animal Seed(SeedGenerator _seeder)
@@ -38,7 +39,17 @@ public class NordicAnimal: Animal, ISeed<NordicAnimal>
 	public NordicAnimalKind Kind { get; set; }
 	public bool CanSwim { get; set; }
 
-	public override string ToString() => $"{base.ToString()} the {Kind} (CanSwim: {CanSwim})";	
+	public override string ToString() => $"{base.ToString()} the {Kind} (CanSwim: {CanSwim})";
+
+	public override string MakeSound() => Kind switch
+	{
+		NordicAnimalKind.Moose => "Bellow!",
+		NordicAnimalKind.Wolf => "Howl!",
+		NordicAnimalKind.Deer => "Bleat!",
+		NordicAnimalKind.Bear => "Growl!",
+		NordicAnimalKind.Fox => "Screech!",
+		_ => "Animal Sound"
+	};
 	public new NordicAnimal Seed(SeedGenerator _seeder)
 	{
 		base.Seed(_seeder);
@@ -60,7 +71,16 @@ public class AfricanAnimal: Animal, ISeed<AfricanAnimal>
 	public AfricanAnimalKind Kind { get; set; }
 	public int WeightKg { get; set; }
 
-	public override string ToString() => $"{base.ToString()} the {Kind} (WeightKg: {WeightKg})";	
+	public override string ToString() => $"{base.ToString()} the {Kind} (WeightKg: {WeightKg})";
+	public override string MakeSound() => Kind switch
+	{
+		AfricanAnimalKind.Aligator => "Bell",
+		AfricanAnimalKind.Elephant => "Trumpet!",
+		AfricanAnimalKind.Lion => "Roar!",
+		AfricanAnimalKind.Donkey => "Growl",
+		AfricanAnimalKind.Monkey => "Screech!",
+		_ => "Animal Sound"
+	};
 	public new AfricanAnimal Seed(SeedGenerator _seeder)
 	{
 		base.Seed(_seeder);
@@ -83,6 +103,7 @@ public class HunterBird: Animal, ISeed<HunterBird>
 	public int WingspanCm { get; set; }
 
 	public override string ToString() => $"{base.ToString()} the {Kind} (WingspanCm: {WingspanCm})";	
+	public override string MakeSound() =>"Screech!";
 
 	public HunterBird Hunt()
 	{
